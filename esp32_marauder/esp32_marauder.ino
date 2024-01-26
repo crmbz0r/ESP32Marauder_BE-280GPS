@@ -196,15 +196,15 @@ void setup()
     delay(10);
   #endif
 
-  Serial.begin(115200);
+  Serial.begin(38400);
 
   // Starts a second serial channel to stream the captured packets
   #ifdef WRITE_PACKETS_SERIAL
     
     #ifdef XIAO_ESP32_S3
-      Serial1.begin(115200, SERIAL_8N1, XIAO_RX1, XIAO_TX1);
+      Serial1.begin(38400, SERIAL_8N1, XIAO_RX1, XIAO_TX1);
     #else
-      Serial1.begin(115200);
+      Serial1.begin(38400);
     #endif
     
   #endif

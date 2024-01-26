@@ -16,7 +16,7 @@
 // ##################################################################################
 
 // Only define one driver, the other ones must be commented out
-#define ILI9341_DRIVER
+//#define ILI9341_DRIVER
 //#define ST7735_DRIVER      // Define additional parameters below for this display
 //#define ILI9163_DRIVER     // Define additional parameters below for this display
 //#define S6D02A1_DRIVER
@@ -24,7 +24,7 @@
 //#define HX8357D_DRIVER
 //#define ILI9481_DRIVER
 //#define ILI9486_DRIVER
-//#define ILI9488_DRIVER     // WARNING: Do not connect ILI9488 display SDO to MISO if other devices share the SPI bus (TFT SDO does NOT tristate when CS is high)
+#define ILI9488_DRIVER     // WARNING: Do not connect ILI9488 display SDO to MISO if other devices share the SPI bus (TFT SDO does NOT tristate when CS is high)
 //#define ST7789_DRIVER      // Full configuration option, define additional parameters below for this display
 //#define ST7789_2_DRIVER    // Minimal configuration option, define additional parameters below for this display
 //#define R61581_DRIVER
@@ -34,7 +34,7 @@
 // bi-directional SDA pin and the library will try to read this via the MOSI line.
 // To use the SDA line for reading data from the TFT uncomment the following line:
 
-// #define TFT_SDA_READ      // This option is for ESP32 ONLY, tested with ST7789 display only
+#define TFT_SDA_READ      // This option is for ESP32 ONLY, tested with ST7789 display only
 
 // For ST7789 ONLY, define the colour order IF the blue and red are swapped on your display
 // Try ONE option at a time to find the correct colour order for your display
@@ -158,17 +158,17 @@
 // For ESP32 Dev board (only tested with ILI9341 display)
 // The hardware SPI can be mapped to any pins
 
-#define TFT_MISO 19 // Matching T_DO
-#define TFT_MOSI 23 // Matching T_DIN
-#define TFT_SCLK 18 // Matching T_CLK
-#define TFT_CS   17  // Chip select control pin
-#define TFT_DC   16  // Data Command control pin
-#define TFT_RST   5  // Reset pin (could connect to RST pin)
+#define TFT_MISO 12 // Matching T_DO
+#define TFT_MOSI 11 // Matching T_DIN
+#define TFT_SCLK 13 // Matching T_CLK
+//#define TFT_CS   17  // Chip select control pin
+//#define TFT_DC   16  // Data Command control pin
+//#define TFT_RST   5  // Reset pin (could connect to RST pin)
 //#define TFT_RST  -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board RST
 
-#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
+//#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
-#define TOUCH_CS 21     // Chip select pin (T_CS) of touch screen
+#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
 
 //#define TFT_WR 22    // Write strobe for modified Raspberry Pi TFT only
 
@@ -191,17 +191,18 @@
 // Parallel bus is only supported on ESP32
 // Uncomment line below to use ESP32 Parallel interface instead of SPI
 
-//#define ESP32_PARALLEL
+#define ESP32_PARALLEL
 
 // The ESP32 and TFT the pins used for testing are:
-//#define TFT_CS   33  // Chip select control pin (library pulls permanently low
-//#define TFT_DC   15  // Data Command control pin - must use a pin in the range 0-31
-//#define TFT_RST  32  // Reset pin, toggles on startup
+#define TFT_CS   10  // Chip select control pin (library pulls permanently low
+#define TFT_DC   16  // Data Command control pin - must use a pin in the range 0-31
+#define TFT_RST  28  // Reset pin, toggles on startup
 
-//#define TFT_WR    4  // Write strobe control pin - must use a pin in the range 0-31
-//#define TFT_RD    2  // Read strobe control pin
+#define TFT_WR    20  // Write strobe control pin - must use a pin in the range 0-31
+#define TFT_RD    21  // Read strobe control pin
 
-//#define TFT_D0   12  // Must use pins in the range 0-31 for the data bus
+#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
+#define TFT_D0   3  // Must use pins in the range 0-31 for the data bus
 //#define TFT_D1   13  // so a single register write sets/clears all bits.
 //#define TFT_D2   26  // Pins can be randomly assigned, this does not affect
 //#define TFT_D3   25  // TFT screen update performance.
