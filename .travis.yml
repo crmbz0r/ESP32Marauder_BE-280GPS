@@ -45,7 +45,7 @@ before_install:
   - install_library 'https://github.com/crmbz0r/MicroNMEA/archive/refs/tags/CI_UL.zip'
   - install_library 'https://github.com/crmbz0r/espsoftwareserial/archive/refs/tags/CI_UL.zip'
   - install_library 'https://github.com/crmbz0r/SwitchLib/archive/refs/tags/v1.1.1.zip'
-  - install_library 'https://github.com/crmbz0r/CircularQueue.git'
+  - install_library 'https://github.com/crmbz0r/CircularQueue/archive/refs/tags/ci-dl.zip'
 
   - cp ${TRAVIS_BUILD_DIR}/User_Setup.h /home/travis/arduino-sketchbook/libraries/TFT_eSPI/User_Setup.h
   #- install_library 'https://github.com/bblanchon/ArduinoJson.git'
