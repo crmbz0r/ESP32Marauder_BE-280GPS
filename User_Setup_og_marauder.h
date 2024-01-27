@@ -227,25 +227,32 @@
 // Parallel bus is only supported on ESP32
 // Uncomment line below to use ESP32 Parallel interface instead of SPI
 
-//#define ESP32_PARALLEL
+#define ESP32_PARALLEL
 
 // The ESP32 and TFT the pins used for testing are:
-//#define TFT_CS   33  // Chip select control pin (library pulls permanently low
-//#define TFT_DC   15  // Data Command control pin - must use a pin in the range 0-31
-//#define TFT_RST  32  // Reset pin, toggles on startup
+#define TFT_CS   10  // Chip select control pin (library pulls permanently low
+#define TFT_DC   16  // Data Command control pin - must use a pin in the range 0-31
+#define TFT_RST   28  // Reset pin, toggles on startup
 
 //#define TFT_WR    4  // Write strobe control pin - must use a pin in the range 0-31
 //#define TFT_RD    2  // Read strobe control pin
 
-//#define TFT_D0   12  // Must use pins in the range 0-31 for the data bus
-//#define TFT_D1   13  // so a single register write sets/clears all bits.
-//#define TFT_D2   26  // Pins can be randomly assigned, this does not affect
-//#define TFT_D3   25  // TFT screen update performance.
-//#define TFT_D4   17
-//#define TFT_D5   16
-//#define TFT_D6   27
-//#define TFT_D7   14
+#define TFT_D0   3  // Must use pins in the range 0-31 for the data bus
+#define TFT_D1   4  // so a single register write sets/clears all bits.
+#define TFT_D2   5  // Pins can be randomly assigned, this does not affect
+#define TFT_D3   6  // TFT screen update performance.
+#define TFT_D4   7
+#define TFT_D5   8
+#define TFT_D6   18
+#define TFT_D7   19
+#define TFT_MISO 12
+#define TFT_MOSI 11
+#define TFT_SCLK 13
+//#define TFT_RST  -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board RST
 
+//#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
+
+#define TOUCH_CS 16   
 
 // ##################################################################################
 //
