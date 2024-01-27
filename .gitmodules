@@ -28,9 +28,9 @@
 [submodule "esp32_marauder/libraries/ESPAsyncWebServer"]
 	path = esp32_marauder/libraries/ESPAsyncWebServer
 	url = https://github.com/crmbz0r/ESPAsyncWebServer.git
-[submodule "esp32_marauder/libraries/CircularQueue"]
-	path = esp32_marauder/libraries/CircularQueue
-	url = https://github.com/Francis-Magallanes/CircularQueue.git
+[submodule "esp32_marauder/libraries/ghostl"]
+	path = esp32_marauder/libraries/ghostl
+	url = https://github.com/dok-net/ghostl.git
 [submodule "esp32_marauder/libraries/espsoftwareserial"]
 	path = esp32_marauder/libraries/espsoftwareserial
 	url = https://github.com/plerup/espsoftwareserial.git
