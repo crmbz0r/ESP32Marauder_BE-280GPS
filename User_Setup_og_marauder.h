@@ -186,7 +186,7 @@
 
 //#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
-#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
+//#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
 
 /////////////////////////////
 
@@ -202,7 +202,7 @@
 
 #define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
-#define TOUCH_CS 21     // Chip select pin (T_CS) of touch screen
+//#define TOUCH_CS 21     // Chip select pin (T_CS) of touch screen
 */
 /////////////////////////////
 
@@ -252,7 +252,7 @@
 
 //#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
-#define TOUCH_CS 16   
+//#define TOUCH_CS 16   
 
 // ##################################################################################
 //

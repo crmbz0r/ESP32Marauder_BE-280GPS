@@ -268,7 +268,7 @@
       #define TFT_DC 23
       #define TFT_RST 18
       #define TFT_BL -1
-      #define TOUCH_CS -1
+      //#define TOUCH_CS -1
       //#define SD_CS 1
 
       #define SCREEN_BUFFER
@@ -510,7 +510,7 @@
       #define TFT_DC 26
       #define TFT_RST 5
       #define TFT_BL 32
-      #define TOUCH_CS 21
+      //#define TOUCH_CS 21
       #define SD_CS 4
 
       #define SCREEN_BUFFER

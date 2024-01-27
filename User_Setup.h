@@ -168,7 +168,7 @@
 
 //#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
-#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
+//#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
 
 //#define TFT_WR 22    // Write strobe for modified Raspberry Pi TFT only
 
@@ -201,7 +201,7 @@
 #define TFT_WR    20  // Write strobe control pin - must use a pin in the range 0-31
 #define TFT_RD    21  // Read strobe control pin
 
-#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
+//#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
 #define TFT_D0   3  // Must use pins in the range 0-31 for the data bus
 //#define TFT_D1   13  // so a single register write sets/clears all bits.
 //#define TFT_D2   26  // Pins can be randomly assigned, this does not affect
