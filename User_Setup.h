@@ -15,9 +15,12 @@
 //
 // ##################################################################################
 
+// Display type -  only define if RPi display
+//#define RPI_DRIVER
+
 // Only define one driver, the other ones must be commented out
-//#define ILI9341_DRIVER
-//#define ST7735_DRIVER      // Define additional parameters below for this display
+//#define ILI9341_DRIVER // OG Marauder
+//#define ST7735_DRIVER    // Marauder Mini  // Define additional parameters below for this display
 //#define ILI9163_DRIVER     // Define additional parameters below for this display
 //#define S6D02A1_DRIVER
 //#define RPI_ILI9486_DRIVER // 20MHz maximum SPI
@@ -29,6 +32,7 @@
 //#define ST7789_2_DRIVER    // Minimal configuration option, define additional parameters below for this display
 //#define R61581_DRIVER
 //#define RM68140_DRIVER
+//#define ST7796_DRIVER
 
 // Some displays support SPI reads via the MISO pin, other displays have a single
 // bi-directional SDA pin and the library will try to read this via the MOSI line.
@@ -36,7 +40,7 @@
 
 #define TFT_SDA_READ      // This option is for ESP32 ONLY, tested with ST7789 display only
 
-// For ST7789 ONLY, define the colour order IF the blue and red are swapped on your display
+// For ST7789 and ILI9341 ONLY, define the colour order IF the blue and red are swapped on your display
 // Try ONE option at a time to find the correct colour order for your display
 
 //  #define TFT_RGB_ORDER TFT_RGB  // Colour order Red-Green-Blue
@@ -48,10 +52,10 @@
 
 // For ST7789, ST7735 and ILI9163 ONLY, define the pixel width and height in portrait orientation
 // #define TFT_WIDTH  80
-// #define TFT_WIDTH  128
+// #define TFT_WIDTH  128 // Marauder Mini
 // #define TFT_WIDTH  240 // ST7789 240 x 240 and 240 x 320
 // #define TFT_HEIGHT 160
-// #define TFT_HEIGHT 128
+// #define TFT_HEIGHT 128 // Marauder Mini
 // #define TFT_HEIGHT 240 // ST7789 240 x 240
 // #define TFT_HEIGHT 320 // ST7789 240 x 320
 
@@ -84,7 +88,7 @@
 // driven with a PWM signal or turned OFF/ON then this must be handled by the user
 // sketch. e.g. with digitalWrite(TFT_BL, LOW);
 
-// #define TFT_BACKLIGHT_ON HIGH  // HIGH or LOW are options
+// #define TFT_BACKLIGHT_ON LOW  // HIGH or LOW are options
 
 // ##################################################################################
 //
@@ -140,10 +144,12 @@
 // ######  FOR ESP8266 OVERLAP MODE EDIT THE PIN NUMBERS IN THE FOLLOWING LINES  ######
 
 // Overlap mode shares the ESP8266 FLASH SPI bus with the TFT so has a performance impact
-// but saves pins for other functions.
-// Use NodeMCU SD0=MISO, SD1=MOSI, CLK=SCLK to connect to TFT in overlap mode
-
+// but saves pins for other functions. It is best not to connect MISO as some displays
+// do not tristate that line wjen chip select is high!
+// On NodeMCU 1.0 SD0=MISO, SD1=MOSI, CLK=SCLK to connect to TFT in overlap mode
+// On NodeMCU V3  S0 =MISO, S1 =MOSI, S2 =SCLK
 // In ESP8266 overlap mode the following must be defined
+
 //#define TFT_SPI_OVERLAP
 
 // In ESP8266 overlap mode the TFT chip select MUST connect to pin D3
@@ -158,17 +164,47 @@
 // For ESP32 Dev board (only tested with ILI9341 display)
 // The hardware SPI can be mapped to any pins
 
-#define TFT_MISO 12 // Matching T_DO
-#define TFT_MOSI 11 // Matching T_DIN
-#define TFT_SCLK 13 // Matching T_CLK
-//#define TFT_CS   17  // Chip select control pin
-//#define TFT_DC   16  // Data Command control pin
-//#define TFT_RST   5  // Reset pin (could connect to RST pin)
+// Marauder Mini
+/*
+#define TFT_CS   17  // Chip select control pin D8
+#define TFT_DC   16  // Data Command control pin
+#define TFT_RST  5  // Reset pin (could connect to NodeMCU RST, see next line)
+//#define TFT_MISO 19
+//#define TFT_MOSI 23
+//#define TFT_SCLK 18
+//#define TFT_BL   32
+*/
+
+// ESP32 Marauder 
+#define TFT_MISO 12
+#define TFT_MOSI 11
+#define TFT_SCLK 13
+#define TFT_CS   10  // Chip select control pin
+#define TFT_DC   16  // Data Command control pin
+#define TFT_RST   28  // Reset pin (could connect to RST pin)
 //#define TFT_RST  -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board RST
 
 //#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
 
 //#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
+
+/////////////////////////////
+
+// ESP32 Centauri
+/*
+#define TFT_MISO 19
+#define TFT_MOSI 23
+#define TFT_SCLK 18
+#define TFT_CS   27  // Chip select control pin
+#define TFT_DC   26  // Data Command control pin
+#define TFT_RST   5  // Reset pin (could connect to RST pin)
+//#define TFT_RST  -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board RST
+
+#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
+
+//#define TOUCH_CS 21     // Chip select pin (T_CS) of touch screen
+*/
+/////////////////////////////
 
 //#define TFT_WR 22    // Write strobe for modified Raspberry Pi TFT only
 
@@ -196,21 +232,27 @@
 // The ESP32 and TFT the pins used for testing are:
 #define TFT_CS   10  // Chip select control pin (library pulls permanently low
 #define TFT_DC   16  // Data Command control pin - must use a pin in the range 0-31
-#define TFT_RST  28  // Reset pin, toggles on startup
+#define TFT_RST   28  // Reset pin, toggles on startup
 
-#define TFT_WR    20  // Write strobe control pin - must use a pin in the range 0-31
-#define TFT_RD    21  // Read strobe control pin
+//#define TFT_WR    4  // Write strobe control pin - must use a pin in the range 0-31
+//#define TFT_RD    2  // Read strobe control pin
 
-//#define TOUCH_CS 16     // Chip select pin (T_CS) of touch screen
 #define TFT_D0   3  // Must use pins in the range 0-31 for the data bus
-//#define TFT_D1   13  // so a single register write sets/clears all bits.
-//#define TFT_D2   26  // Pins can be randomly assigned, this does not affect
-//#define TFT_D3   25  // TFT screen update performance.
-//#define TFT_D4   17
-//#define TFT_D5   16
-//#define TFT_D6   27
-//#define TFT_D7   14
+#define TFT_D1   4  // so a single register write sets/clears all bits.
+#define TFT_D2   5  // Pins can be randomly assigned, this does not affect
+#define TFT_D3   6  // TFT screen update performance.
+#define TFT_D4   7
+#define TFT_D5   8
+#define TFT_D6   18
+#define TFT_D7   19
+#define TFT_MISO 12
+#define TFT_MOSI 11
+#define TFT_SCLK 13
+//#define TFT_RST  -1  // Set TFT_RST to -1 if display RESET is connected to ESP32 board RST
 
+//#define TFT_BL   32  // LED back-light (only for ST7789 with backlight control pin)
+
+//#define TOUCH_CS 16   
 
 // ##################################################################################
 //
@@ -248,19 +290,17 @@
 // With an ILI9341 display 40MHz works OK, 80MHz sometimes fails
 // With a ST7735 display more than 27MHz may not work (spurious pixels and lines)
 // With an ILI9163 display 27 MHz works OK.
-// The RPi typically only works at 20MHz maximum.
 
 // #define SPI_FREQUENCY   1000000
-//define SPI_FREQUENCY   5000000
+//#define SPI_FREQUENCY   5000000
 // #define SPI_FREQUENCY  10000000
 // #define SPI_FREQUENCY  20000000
-#define SPI_FREQUENCY  27000000 // Actually sets it to 26.67MHz = 80/3
-// #define SPI_FREQUENCY  40000000 // Maximum to use SPIFFS
+#define SPI_FREQUENCY  27000000 // Marauder // Actually sets it to 26.67MHz = 80/3
+// #define SPI_FREQUENCY  40000000
 // #define SPI_FREQUENCY  80000000
 
 // Optional reduced SPI frequency for reading TFT
 #define SPI_READ_FREQUENCY  20000000
-//#define SPI_READ_FREQUENCY  5000000
 
 // The XPT2046 requires a lower SPI clock rate of 2.5MHz so we define that here:
 #define SPI_TOUCH_FREQUENCY  2500000

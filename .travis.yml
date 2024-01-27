@@ -33,9 +33,9 @@ before_install:
 
   # Install the library from the repository
   #- install_library "https://github.com/lvgl/lv_port_esp32/archive/master.zip"
-  - install_library "TFT_eSPI"
+  - install_library 'https://github.com/crmbz0r/TFT_eSPI/archive/refs/tags/TFT_eSPI.zip'
   - install_library "JPEGDecoder"
-  - install_library "LinkedList"
+  - install_library 'https://github.com/crmbz0r/LinkedList/archive/refs/tags/LinkedList.zip'
   - install_library "lv_arduino"
   - install_library "https://github.com/adafruit/Adafruit_BusIO/archive/refs/tags/1.15.0.zip"
   - install_library "https://github.com/adafruit/Adafruit-GFX-Library/archive/refs/tags/1.11.9.zip"
@@ -44,7 +44,7 @@ before_install:
   - install_library 'https://github.com/bblanchon/ArduinoJson/releases/download/v5.13.5/ArduinoJson-v5.13.5.zip'
   - install_library 'https://github.com/h2zero/NimBLE-Arduino/archive/master.zip' # NimBLE
   - install_library 'https://github.com/crmbz0r/AsyncTCP/archive/refs/tags/CI_UL.zip'
-  - install_library 'https://github.com/crmbz0r/ESPAsyncWebServer/archive/refs/tags/CI_UL.zip'
+  - install_library 'https://github.com/crmbz0r/ESPAsyncWebServer/archive/refs/tags/ESPAsyncWebServer.zip'
   - install_library 'https://github.com/crmbz0r/MicroNMEA/archive/refs/tags/CI_UL.zip'
   - install_library 'https://github.com/dok-net/ghostl/archive/refs/tags/1.0.1.zip'
   - install_library 'https://github.com/crmbz0r/espsoftwareserial/archive/refs/tags/CI_UL.zip'
